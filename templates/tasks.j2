@@ -1,0 +1,68 @@
+{% extends "layout.j2" %}
+{% block title %}
+   Tasks
+{% endblock title %}
+{% block main %}
+   <div class="container">
+      <h3>Tasks</h3>
+      <nav>
+         <ul class="pagination justify-content-center">
+            {# Prev button #}
+            {% if pagination.has_prev %}
+               <li class="page-item">
+                  <a class="page-link"
+                     href="{{ url_for('tasks', page=pagination.page-1)}}">Previous</a>
+               </li>
+            {% endif %}
+            {# Page numbers #}
+            {%- for page in pagination.iter_pages() %}
+               {% if page %}
+                  {% if page != pagination.page %}
+                     <li class="page-item">
+                        <a class="page-link" href="{{ url_for('tasks', page=page) }}">{{ page }}</a>
+                     </li>
+                  {% else %}
+                     <li class="page-item disabled">
+                        <a class="page-link" href="#">{{ page }}</a>
+                     </li>
+                  {% endif %}
+               {% else %}
+                  <span class="ellipsis">…</span>
+               {% endif %}
+            {%- endfor %}
+            {# next button #}
+            {% if pagination.has_next %}
+               <li class="page-item">
+                  <a class="page-link"
+                     href="{{ url_for('tasks', page=pagination.page+1)}}">Next</a>
+               </li>
+            {% endif %}
+         </ul>
+      </nav>
+      <table class="table table-dark table-striped table-hover">
+         <thead class="thead-dark">
+            <tr>
+               {# Columns #}
+               <th scope="col">#</th>
+               <th scope="col" class="text-start">Filename</th>
+               <th scope="col">Time</th>
+               <th scope="col">Download</th>
+            </tr>
+         </thead>
+         <tbody>
+            {% for task in tasks %}
+               <tr>
+                  {# Cheat code for making indexes start at 0 #}
+                  <th scope="row">{{ loop.index + (pagination.page - 1) * pagination.per_page }}</th>
+                  <td class="text-start">{{ task.file }}</td>
+                  <td>{{ task.time }}</td>
+                  <td>
+                     <a href="{{ url_for('download', id=task.id) }}">Download</a>
+                  </td>
+               </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+      <p class="text-muted">Dates are in UTC.</p>
+   </div>
+{% endblock main %}

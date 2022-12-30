@@ -1,0 +1,31 @@
+{% extends "layout.j2" %}
+{% block title %}
+   Decrypt
+{% endblock title %}
+{% block main %}
+   <div class="container-sm">
+      <div class="container-fluid d-flex flex-column">
+         <!-- add password file upload and password input -->
+         <form onsubmit="return false" class="container-sm">
+            <h3>Decrypt</h3>
+            <div class="form-group row mt-2">
+               <label for="password" class="col-sm-2 col-form-label">Password</label>
+               <div class="col-sm-10">
+                  <input type="text"
+                         class="form-control"
+                         id="password"
+                         placeholder="Decrypt password"/>
+               </div>
+            </div>
+         </form>
+         <div action="{{ url_for('decryptapi') }}"
+              class="dropzone mt-3"
+              id="dropzoned">
+            <div class="dz-default dz-message">
+               <button class="dz-button" type="button">Drop files here to decrypt</button>
+            </div>
+         </div>
+      </div>
+      <script src="{{ url_for('static', filename='decrypt.js') }}"></script>
+   </div>
+{% endblock main %}

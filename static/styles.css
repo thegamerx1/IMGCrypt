@@ -1,0 +1,34 @@
+html, body {
+	padding: 0;
+	margin: 0;
+	box-sizing: content-box;
+}
+
+/* Size for brand */
+nav .navbar-brand {
+	font-size: xx-large;
+}
+
+/* Colors for brand */
+nav .navbar-brand .red {
+	color: #d61a3c;
+}
+nav .navbar-brand .green {
+	color: #48a14d;
+}
+
+table tbody th {
+	font-weight: 400;
+}
+
+nav, footer {
+	user-select: none;
+}
+
+.btn-home {
+	padding: 15px;
+}
+
+.dropzone {
+	border-radius: 15px;
+}

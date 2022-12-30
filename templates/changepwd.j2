@@ -1,0 +1,31 @@
+{% extends "layout.j2" %}
+{% block title %}
+   Change Password
+{% endblock title %}
+{% block main %}
+   <h3 class="text-center mb-3">Change password</h3>
+   <form action="{{ url_for('changepwd') }}" method="post" class="text-center">
+      <div class="mb-3">
+         <input class="form-control mx-auto w-auto"
+                id="oldpassword"
+                name="oldpassword"
+                placeholder="Old Password"
+                type="password"/>
+      </div>
+      <div class="mb-3">
+         <input class="form-control mx-auto w-auto"
+                id="newpassword"
+                name="newpassword"
+                placeholder="New Password"
+                type="password"/>
+      </div>
+      <div class="mb-3">
+         <input class="form-control mx-auto w-auto"
+                id="confirmpassword"
+                name="confirmpassword"
+                placeholder="Confirm Password"
+                type="password"/>
+      </div>
+      <button class="btn btn-primary" type="submit">Change password</button>
+   </form>
+{% endblock main %}

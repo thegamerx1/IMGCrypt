@@ -1,0 +1,37 @@
+{% extends "layout.j2" %}
+{% block title %}
+   Home
+{% endblock title %}
+{% block main %}
+   <div class="container">
+      <h1>
+         {% if uploads == 0 %}
+            Welcome, {{ user.username }}
+         {% else %}
+            Welcome back, {{ user.username }}
+         {% endif %}
+      </h1>
+      <h4>You are our #{{ user.id }} user</h4>
+      <h4>
+         You are on top
+         {% if totaluploads > 0 %}
+            {{ "%.2f" | format(uploads/totaluploads*100) }}
+         {% else %}
+            0
+         {% endif %}
+         % uploads.
+      </h4>
+      <h4>You have encrypted {{ uploads }} files.</h4>
+      <h4>We have encrypted {{ totaluploads }} files so far.</h4>
+      <div class="btn-group-vertical w-100">
+         {% if uploads == 0 %}
+            <a class="btn btn-dark btn-block btn-home"
+               href="{{ url_for('encrypt') }}">Encrypt my first file</a>
+         {% else %}
+            <a class="btn btn-dark btn-home" href="{{ url_for('encrypt') }}">Encrypt more files</a>
+            <a class="btn btn-dark btn-home" href="{{ url_for('decrypt') }}">Decrypt my files</a>
+            <a class="btn btn-dark btn-home" href="{{ url_for('tasks') }}">Download my files</a>
+         {% endif %}
+      </div>
+   </div>
+{% endblock main %}

@@ -1,0 +1,28 @@
+{% extends "layout.j2" %}
+{% block title %}
+   Login
+{% endblock title %}
+{% block main %}
+   <h3 class="text-center mb-3">Login</h3>
+   <form action="{{ url_for('login') }}" method="post" class="text-center">
+      <div class="mb-3">
+         <input autocomplete="off"
+                autofocus
+                class="form-control mx-auto w-auto"
+                id="username"
+                name="username"
+                placeholder="Username"
+                type="text"
+                value="{{ request.form['username'] }}"/>
+      </div>
+      <div class="mb-3">
+         <input class="form-control mx-auto w-auto"
+                id="password"
+                name="password"
+                placeholder="Password"
+                type="password"/>
+      </div>
+      <button class="btn btn-primary" type="submit">Log In</button>
+      <a href="{{ url_for('register') }}" class="d-block mt-3">Don't have an account?</a>
+   </form>
+{% endblock main %}
